@@ -1,7 +1,7 @@
 import discord
 import responses
 import deleteMessages
-
+from botToken import TOKEN
 
 async def send_message(message, user_message, is_private):
     try:
@@ -11,7 +11,7 @@ async def send_message(message, user_message, is_private):
         print(e)
 
 def run_discord_bot():
-    TOKEN = 'MTE0ODY2ODUzMjQ5NDcxMjg2Mg.Gl6h9H.tz49uD7RIZK8FT1FgaaBs0jsbWUbrTl_kqXH4Q'
+    botToken = TOKEN
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
@@ -38,8 +38,8 @@ def run_discord_bot():
         else:
             await send_message(message, user_message, is_private=False)
         # Delete unwanted messages    
-        await deleteMessages.autoDeleteMessages(message)
+        await deleteMessages.autoDeleteMessages(message) and print(responses(deleteMessages))
         
 
-    client.run(TOKEN)
+    client.run(botToken)
 

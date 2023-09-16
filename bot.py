@@ -1,3 +1,5 @@
+# Author: Jaakko Saarikko
+
 import discord
 import responses
 import deleteMessages

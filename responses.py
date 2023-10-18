@@ -1,7 +1,8 @@
 import random
 import deleteMessages
 
-kielletyt_sanat = ["neekeri", "nigger", "n1gger", "n33k3ri", "n33k3r1", "nigga", "n1gga", "neger", "n3g3r"]
+kielletyt_sanat = ["neekeri", "neek3ri", "n33k3ri", "n33k3r1", "neek eri", "nigger", "n1gger",  "nigga", "n1gga", "neger", "n3g3r"]
+neekeri = "neekeri"
 
 def get_response(message) -> str:
     p_message = message.lower()
@@ -15,7 +16,7 @@ def get_response(message) -> str:
     if p_message == "ohjeet":
         return "`Tässä ohjeet Botin komentamiseen: `"
 
-    if p_message in kielletyt_sanat:
+    if p_message in kielletyt_sanat or neekeri:
         return "`Käyttämäsi sana on kiellettyjen sanojen listalla.`"        
 
     if deleteMessages():

@@ -40,7 +40,7 @@ def run_discord_bot():
         else:
             await send_message(message, user_message, is_private=False)
         # Delete unwanted messages    
-        await deleteMessages.autoDeleteMessages(message) and print(responses(deleteMessages))
+        await deleteMessages.autoDeleteMessages(message)
         
 
     client.run(botToken)

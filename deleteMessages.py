@@ -1,4 +1,32 @@
+import urllib.parse
+
 async def autoDeleteMessages(message):
+
+    kielletyt_osoitteet = ["https://media.discordapp.net/attachments/1129134994862903328/1146085397995208795/IMG_1960.gif",
+"https://media.discordapp.net/attachments/889648627998396467/958347280522571776/20220209_020937.gif",
+"https://media.discordapp.net/attachments/889648627998396467/958347280522571776/20220209_020937.gif",
+"https://media.discordapp.net/attachments/934628911227215882/951126813294350336/image0-1-1.gif?width=810&height=635",
+"https://media.discordapp.net/attachments/625245407122948106/1025368565605474304/r1.gif",
+"https://images-ext-1.discordapp.net/external/rZ7Xffd9DD_BtTNJ4U3RL-s05QOpCsWBCZTQbF1ENWo/%3Fcid%3D73b8f7b10rwdt1waoulw1t3bo485bq9wek3gm9i823mtdk61%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media1.giphy.com/media/gXXEAd29WXpxsml8Cy/giphy.mp4",
+"https://giphy.com/gifs/ww-gXXEAd29WXpxsml8Cy",
+"https://images-ext-2.discordapp.net/external/VTQoUnwoAAzXGbnMpNnP7hTKE40za_L9OaQxaurOvS0/https/media.tenor.com/4goyEL9CgwUAAAPo/twenty-century-fox-meme-gfy.mp4",
+"https://tenor.com/view/twenty-century-fox-meme-gfy-go-fuck-yourself-meme-get-lost-gif-26260205",
+"https://media.discordapp.net/attachments/864780983487954965/1021706609916915763/EDC89514-01C9-4C7D-AA2A-516FD6AE8CDE.gif",
+"https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4",
+"https://media.giphy.com/media/la9vclufqEVz54YjpR/giphy.gif"
+"https://media.discordapp.net/attachments/889648627998396467/958347280522571776/20220209_020937.gif",
+"https://media.discordapp.net/attachments/1030920325262745620/1104816106855731320/7kveo6.gif",
+"https://media.discordapp.net/attachments/934665287339499560/969753529810034718/kowalski.gif",
+"https://media.discordapp.net/attachments/934628911227215882/951126813294350336/image0-1-1.gif?width=810&height=635",
+"https://media.discordapp.net/attachments/934628911227215882/951126813294350336/image0-1-1.gif",
+"https://media.giphy.com/media/la9vclufqEVz54YjpR/giphy.gif",
+"https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4",
+"https://images-ext-2.discordapp.net/external/-O_-P5ym_uHtnKWNU0CK13i-6n0E4F2MEVqn1spm7-M/https/media.tenor.com/pw426ez7qM8AAAPo/jee-jee-jee-jee-jee-jee-rock-rock-rock-kohta-p%25C3%25A4%25C3%25A4see-r%25C3%25B6%25C3%25B6kille-ja-naiselle.mp4"]
+
+
+#    kielletyt_osoitteet_ja_merkillä = ["https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4",
+#    "https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4"]
+
     # Auto delete unwanted messages
     # Check if message has attachments
     if message.attachments:
@@ -10,6 +38,24 @@ async def autoDeleteMessages(message):
                 await message.delete()
                 break  # Voit lopettaa silmukan, kun poistat ensimmäisen osuman
     # Check if message text contains a specific URL
-    elif 'https://media.discordapp.net/attachments/1129134994862903328/1146085397995208795/IMG_1960.gif' in message.content:
-        # Delete message
-        await message.delete()
+    for url in kielletyt_osoitteet:
+        if url in message.content:
+            # Delete message
+            await message.delete()
+            break
+
+    for url in kielletyt_osoitteet_ja_merkillä:
+        if url in message.content:
+            # Delete message
+            await message.delete()
+            break
+
+    # Tarkista, jos viestissä on kielletty URL
+    for url in kielletyt_osoitteet:
+    # Erotetaan URL-osoite tekstistä
+        parsed_url = urllib.parse.urlsplit(url)
+    
+        if parsed_url.geturl() in message.content:
+            # Poista viesti
+            await message.delete()
+            break

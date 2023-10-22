@@ -1,4 +1,4 @@
-### pieruBotti
+# pieruBotti
 
 PieruBotti on Jaakko Saarikon itse koodaama Discord Botti, jonka tarkoitus on lähinnä ärsyttää Lauria, sekä tuoda palvelimelle jotain perus toimintoja.
 Koodi bugista, ja hädin tuskin toimivaa, mutta sillä mennään.

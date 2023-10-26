@@ -1,3 +1,4 @@
+import discord
 import urllib.parse
 
 async def autoDeleteMessages(message):
@@ -24,7 +25,9 @@ async def autoDeleteMessages(message):
 "https://images-ext-2.discordapp.net/external/-O_-P5ym_uHtnKWNU0CK13i-6n0E4F2MEVqn1spm7-M/https/media.tenor.com/pw426ez7qM8AAAPo/jee-jee-jee-jee-jee-jee-rock-rock-rock-kohta-p%25C3%25A4%25C3%25A4see-r%25C3%25B6%25C3%25B6kille-ja-naiselle.mp4",
 "https://media.discordapp.net/attachments/879122843160440903/923982054314635364/image0.gif",
 "https://media.discordapp.net/attachments/508392234291560458/1071369881670389821/79xm7c.gif",
-"https://media.discordapp.net/attachments/870210769478885377/885827784566525962/cry_about_it.gif"]
+"https://media.discordapp.net/attachments/870210769478885377/885827784566525962/cry_about_it.gif",
+"https://media.discordapp.net/attachments/911037876391796766/1009490757008240732/kill_button_bruh.gif",
+"https://media.discordapp.net/attachments/758434041526878214/1076130834349826058/IMG_0506.gif?width=750&height=600"]
 
 
 #    # Auto delete unwanted messages
@@ -42,8 +45,11 @@ async def autoDeleteMessages(message):
     for url in kielletyt_osoitteet:
         if url in message.content:
             # Delete message
-            await message.delete()
-            break
+            try:
+                await message.delete()
+            except discord.NotFound:
+                # Viestiä ei löydy, ei tarvitse tehdä mitään
+                pass
 
     # Tarkista, jos viestissä on kielletty URL
     for url in kielletyt_osoitteet:
@@ -52,5 +58,8 @@ async def autoDeleteMessages(message):
     
         if parsed_url.geturl() in message.content:
             # Poista viesti
-            await message.delete()
-            break
+            try:
+                await message.delete()
+            except discord.NotFound:
+                # Viestiä ei löydy, ei tarvitse tehdä mitään
+                pass

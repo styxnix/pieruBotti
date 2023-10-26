@@ -21,30 +21,25 @@ async def autoDeleteMessages(message):
 "https://media.discordapp.net/attachments/934628911227215882/951126813294350336/image0-1-1.gif",
 "https://media.giphy.com/media/la9vclufqEVz54YjpR/giphy.gif",
 "https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4",
-"https://images-ext-2.discordapp.net/external/-O_-P5ym_uHtnKWNU0CK13i-6n0E4F2MEVqn1spm7-M/https/media.tenor.com/pw426ez7qM8AAAPo/jee-jee-jee-jee-jee-jee-rock-rock-rock-kohta-p%25C3%25A4%25C3%25A4see-r%25C3%25B6%25C3%25B6kille-ja-naiselle.mp4"]
+"https://images-ext-2.discordapp.net/external/-O_-P5ym_uHtnKWNU0CK13i-6n0E4F2MEVqn1spm7-M/https/media.tenor.com/pw426ez7qM8AAAPo/jee-jee-jee-jee-jee-jee-rock-rock-rock-kohta-p%25C3%25A4%25C3%25A4see-r%25C3%25B6%25C3%25B6kille-ja-naiselle.mp4",
+"https://media.discordapp.net/attachments/879122843160440903/923982054314635364/image0.gif",
+"https://media.discordapp.net/attachments/508392234291560458/1071369881670389821/79xm7c.gif",
+"https://media.discordapp.net/attachments/870210769478885377/885827784566525962/cry_about_it.gif"]
 
 
-#    kielletyt_osoitteet_ja_merkillä = ["https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4",
-#    "https://images-ext-1.discordapp.net/external/viWHuNgWLMAp4x56vnav-wtQJ_mWsokvw5vRhhmKTPk/%3Fcid%3D73b8f7b1bbgoje8bf4yh0vd1ziuhi9uxg75f6pnxukgyktgp%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/la9vclufqEVz54YjpR/giphy.mp4"]
+#    # Auto delete unwanted messages
+#    # Check if message has attachments
+#    if message.attachments:
+#        # Check all attachments
+#        for attachment in message.attachments:
+#            # Check attachment filename
+#            if attachment.filename == 'IMG_1960.gif':  # Image, you want to delete
+#                # Delete message
+#                await message.delete()
+#                break  # Voit lopettaa silmukan, kun poistat ensimmäisen osuman
 
-    # Auto delete unwanted messages
-    # Check if message has attachments
-    if message.attachments:
-        # Check all attachments
-        for attachment in message.attachments:
-            # Check attachment filename
-            if attachment.filename == 'IMG_1960.gif':  # Image, you want to delete
-                # Delete message
-                await message.delete()
-                break  # Voit lopettaa silmukan, kun poistat ensimmäisen osuman
     # Check if message text contains a specific URL
     for url in kielletyt_osoitteet:
-        if url in message.content:
-            # Delete message
-            await message.delete()
-            break
-
-    for url in kielletyt_osoitteet_ja_merkillä:
         if url in message.content:
             # Delete message
             await message.delete()

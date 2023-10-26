@@ -15,9 +15,6 @@ def get_response(message) -> str:
 
     if p_message == "ohjeet":
         return "`Tässä ohjeet Botin komentamiseen: `"
-
- #   if p_message in kielletyt_sanat or neekeri:
- #       return "`Käyttämäsi sana on kiellettyjen sanojen listalla.`"        
-
+  
     if deleteMessages():
-        return "`Viestisi on kielletty, koska ketään ei vittu kiinnosta se, joten lopeta.`"
+        return "`Viestisi on kielletty, koska ketään ei kiinnosta se, joten lopeta.`"

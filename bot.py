@@ -28,6 +28,18 @@ def run_discord_bot():
         if message.author == client.user:
             return
         
+        # Tarkista käyttäjä
+        if message.author.name == "latex1":
+            if message.attachments:
+                for attachment in message.attachments:
+                    if attachment.url.lower().endswith(('.gif', '.gifv')):
+                        try:
+                            await message.delete()
+                            return  # Poistetaan viesti ja palataan
+                        except discord.NotFound:
+                            pass  # Viestiä ei löydy, ei tarvitse tehdä mitään
+
+
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel)

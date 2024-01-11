@@ -3,6 +3,7 @@
 import discord
 import responses
 import deleteMessages
+from discord.ext import commands
 from botToken import TOKEN
 
 async def send_message(message, user_message, is_private):
@@ -18,10 +19,21 @@ def run_discord_bot():
     intents.message_content = True
     client = discord.Client(intents=intents)
 
-
     @client.event
     async def on_ready():
         print(f"{client.user} on nyt käynnissä!")
+
+    @client.event
+    async def on_voice_state_update(member, before, after):
+        if before.channel is None and after.channel is not None:
+            channel_name = after.channel.name
+            message = f'Jahas, {member.name} on piereskelemässä kanavalla {channel_name}.'
+            ilmoitus_channel_id = 1191748814558724156
+            ilmoitus_channel = client.get_channel(ilmoitus_channel_id)
+            if ilmoitus_channel:
+                await ilmoitus_channel.send(message)
+            else:
+                print("Notification channel not found.")  # Testituloste
 
     @client.event
     async def on_message(message):
@@ -29,13 +41,13 @@ def run_discord_bot():
             return
         
         # Tarkista käyttäjä
-        if message.author.name == "latex1":
+        if message.author.name == "254612427356766209":
             if message.attachments:
                 for attachment in message.attachments:
-                    if attachment.url.lower().endswith(('.gif', '.gifv')):
+                    if attachment.url.lower().endswith(('.gif', '.gifv', '.mp4')):
                         try:
                             await message.delete()
-                            return  # Poistetaan viesti ja palataan
+                            break  # Poista ensimmäinen löydetty .gif ja lopeta silmukka
                         except discord.NotFound:
                             pass  # Viestiä ei löydy, ei tarvitse tehdä mitään
 

@@ -5,6 +5,11 @@ import responses
 import deleteMessages
 from discord.ext import commands
 from botToken import TOKEN
+import psutil
+import platform
+import socket
+
+client = commands.Bot(command_prefix='!')
 
 async def send_message(message, user_message, is_private):
     try:
@@ -22,10 +27,13 @@ def run_discord_bot():
     @client.event
     async def on_ready():
         print(f"{client.user} on nyt käynnissä!")
+#        await client.get_channel(1151586912482644038).send("Botti pieruvahdissa.")
 
     @client.event
     async def on_voice_state_update(member, before, after):
         if before.channel is None and after.channel is not None:
+            if member.id == 944016826751389717:
+                return
             channel_name = after.channel.name
             message = f'Jahas, {member.name} on piereskelemässä kanavalla {channel_name}.'
             ilmoitus_channel_id = 1191748814558724156
@@ -37,21 +45,9 @@ def run_discord_bot():
 
     @client.event
     async def on_message(message):
-        if message.author == client.user:
+        if message.author == client.user:   # Jos viestin lähettäjä on botti itse, älä tee mitään.
             return
         
-        # Tarkista käyttäjä
-        if message.author.name == "254612427356766209":
-            if message.attachments:
-                for attachment in message.attachments:
-                    if attachment.url.lower().endswith(('.gif', '.gifv', '.mp4')):
-                        try:
-                            await message.delete()
-                            break  # Poista ensimmäinen löydetty .gif ja lopeta silmukka
-                        except discord.NotFound:
-                            pass  # Viestiä ei löydy, ei tarvitse tehdä mitään
-
-
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel)
@@ -71,4 +67,3 @@ def run_discord_bot():
         
 
     client.run(botToken)
-

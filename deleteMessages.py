@@ -27,19 +27,9 @@ async def autoDeleteMessages(message):
 "https://media.discordapp.net/attachments/508392234291560458/1071369881670389821/79xm7c.gif",
 "https://media.discordapp.net/attachments/870210769478885377/885827784566525962/cry_about_it.gif",
 "https://media.discordapp.net/attachments/911037876391796766/1009490757008240732/kill_button_bruh.gif",
-"https://media.discordapp.net/attachments/758434041526878214/1076130834349826058/IMG_0506.gif?width=750&height=600"]
-
-
-#    # Auto delete unwanted messages
-#    # Check if message has attachments
-#    if message.attachments:
-#        # Check all attachments
-#        for attachment in message.attachments:
-#            # Check attachment filename
-#            if attachment.filename == 'IMG_1960.gif':  # Image, you want to delete
-#                # Delete message
-#                await message.delete()
-#                break  # Voit lopettaa silmukan, kun poistat ensimmäisen osuman
+"https://media.discordapp.net/attachments/758434041526878214/1076130834349826058/IMG_0506.gif?width=750&height=600",
+"https://images-ext-1.discordapp.net/external/ayulH8Hmc3NqsNQPQRURwP2bJQdSjJnjkP5RtDnAfi0/%3Fcid%3D73b8f7b1wn42fs2fm8jupsbi4b7cmd5b540pvckyid2aarcn%26ep%3Dv1_gifs_gifId%26rid%3Dgiphy.mp4%26ct%3Dg/https/media0.giphy.com/media/kWxAUxpWVhnuo4uEHm/giphy.mp4",
+"https://media0.giphy.com/media/kWxAUxpWVhnuo4uEHm/giphy.mp4?cid=73b8f7b1ea9db62baf8c012973a71d2b0dccdacb3a281431&rid=giphy.mp4&ct=g" ]
 
     # Check if message text contains a specific URL
     for url in kielletyt_osoitteet:

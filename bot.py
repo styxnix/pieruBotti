@@ -9,7 +9,9 @@ import psutil
 import platform
 import socket
 
-client = commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.message_content = True
+client = commands.Bot(command_prefix='!', intents=intents)
 
 async def send_message(message, user_message, is_private):
     try:
@@ -20,9 +22,6 @@ async def send_message(message, user_message, is_private):
 
 def run_discord_bot():
     botToken = TOKEN
-    intents = discord.Intents.default()
-    intents.message_content = True
-    client = discord.Client(intents=intents)
 
     @client.event
     async def on_ready():
@@ -67,3 +66,5 @@ def run_discord_bot():
         
 
     client.run(botToken)
+
+run_discord_bot()

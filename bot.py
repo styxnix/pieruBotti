@@ -32,7 +32,7 @@ def run_discord_bot():
     @client.event
     async def on_voice_state_update(member, before, after):
         if before.channel is None and after.channel is not None:
-            if member.id == 944016826751389717:
+            if member.id == 944016826751389717: # Jos käyttäjä on musiikkibotti Lara
                 return
             channel_name = after.channel.name
             message = f'Jahas, {member.name} on piereskelemässä kanavalla {channel_name}.'

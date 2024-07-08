@@ -1,6 +1,9 @@
+# deleteMessages.py
+
 import discord
 import urllib.parse
 import json
+import logging
 
 # JSON-tiedoston nimi
 kielletyt_osoitteet_tiedosto = 'kielletytOsoitteet.json'
@@ -17,24 +20,20 @@ async def autoDeleteMessages(message):
     # Tarkista, jos viestissä on kielletty URL
     for url in kielletyt_osoitteet:
         if url in message.content:
-            # Poista viesti
             try:
                 await message.delete()
-                print(f"Deleted message from {message.author} containing banned URL: {url}")
+                logging.info(f"Deleted message from {message.author} containing banned URL: {url}")
             except discord.NotFound:
-                # Viestiä ei löydy, ei tarvitse tehdä mitään
                 pass
-            return  # Lopetetaan tarkistus, koska viesti on jo poistettu
+            return
 
     # Tarkista, jos viestissä on kielletty URL osana isompaa tekstiä
     for url in kielletyt_osoitteet:
         parsed_url = urllib.parse.urlsplit(url)
         if parsed_url.geturl() in message.content:
-            # Poista viesti
             try:
                 await message.delete()
-                print(f"Deleted message from {message.author} containing banned URL part: {url}")
+                logging.info(f"Deleted message from {message.author} containing banned URL part: {url}")
             except discord.NotFound:
-                # Viestiä ei löydy, ei tarvitse tehdä mitään
                 pass
-            return  # Lopetetaan tarkistus, koska viesti on jo poistettu
+            return

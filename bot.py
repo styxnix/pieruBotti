@@ -71,19 +71,18 @@ def run_discord_bot():
             if channel:
                 await channel.send("Botti pieruvahdissa.")
 
-    @client.event
-    async def on_voice_state_update(member, before, after):
-        if before.channel is None and after.channel is not None:
-            if member.bot: # Jos kanavalle liittyy botti.
-                return
+@client.event
+async def on_voice_state_update(member, before, after):
+    if before.channel is None and after.channel is not None:
+        if member.bot:  # Jos kanavalle liittyy botti, ohita
+            return
 
         guild_id = str(member.guild.id)
         if guild_id in asetukset['palvelimet']:
             channel_name = after.channel.name
             message = f'Jahas, {member.name} on piereskelemässä kanavalla {channel_name}.'
-            # Huomio: Avain "announcement_channel_id" on päivitetty "ilmoitusKanavaID"
-            ilmoitus_channel_id = asetukset['palvelimet'][guild_id]['ilmoitusKanavaID']
-            ilmoitus_channel = client.get_channel(ilmoitus_channel_id)
+            ilmoitusKanavaID = asetukset['palvelimet'][guild_id]['ilmoitusKanavaID']
+            ilmoitus_channel = client.get_channel(ilmoitusKanavaID)
             if ilmoitus_channel:
                 await ilmoitus_channel.send(message)
                 logging.info(f"Notification sent: {message}")

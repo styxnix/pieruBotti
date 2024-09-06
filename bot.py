@@ -28,7 +28,6 @@ import psutil
 import platform
 import socket
 import logging
-import json
 
 # Lokituksen konfiguraatio
 logging.basicConfig(
@@ -39,13 +38,6 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-
-# Lue asetukset JSON-tiedostosta
-def lue_asetukset():
-    with open('asetukset.json', 'r') as tiedosto:
-        return json.load(tiedosto)
-
-asetukset = lue_asetukset()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -64,31 +56,46 @@ def run_discord_bot():
 
     @client.event
     async def on_ready():
-        logging.info(f"{client.user} on nyt käynnissä!")
-        # Huomio: Avain "servers" on päivitetty "palvelimet"
-        for server_id, config in asetukset['palvelimet'].items():
-            channel = client.get_channel(config['ilmoitusKanavaID'])
-            if channel:
-                await channel.send("Botti pieruvahdissa.")
+        logging.info(f"{client.user} is now running!")
+        await client.get_channel(1151586912482644038).send("Botti pieruvahdissa.")
 
     @client.event
     async def on_voice_state_update(member, before, after):
         if before.channel is None and after.channel is not None:
             if member.bot: # Jos kanavalle liittyy botti.
                 return
-
-        guild_id = str(member.guild.id)
-        if guild_id in asetukset['palvelimet']:
             channel_name = after.channel.name
             message = f'Jahas, {member.name} on piereskelemässä kanavalla {channel_name}.'
-            # Huomio: Avain "announcement_channel_id" on päivitetty "ilmoitusKanavaID"
-            ilmoitus_channel_id = asetukset['palvelimet'][guild_id]['ilmoitusKanavaID']
+            ilmoitus_channel_id = 1191748814558724156
             ilmoitus_channel = client.get_channel(ilmoitus_channel_id)
             if ilmoitus_channel:
                 await ilmoitus_channel.send(message)
                 logging.info(f"Notification sent: {message}")
             else:
                 logging.warning("Notification channel not found.")
+
+    @client.event
+    async def on_message(message):
+        if message.author == client.user:
+            return
+
+        username = str(message.author)
+        user_message = str(message.content)
+        channel = str(message.channel)
+
+        # Lokitetaan käyttäjän viestit
+        logging.info(f"Message from {username} in {channel}: {user_message}")
+
+        if user_message and user_message[0] == "?":
+            user_message = user_message[1:]
+            await send_message(message, user_message, is_private=True)
+        else:
+            if responses.banned_words(user_message):
+                response = "Sana on kiellettyjen sanojen listalla."
+                await message.channel.send(response)
+                logging.info(f"Banned word detected in message from {username}")
+            else:
+                await deleteMessages.autoDeleteMessages(message)
 
     client.run(botToken)
 

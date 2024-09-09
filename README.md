@@ -1,6 +1,6 @@
-# pieruBotti
+# pierubotti
 
-PieruBotti on Jaakko Saarikon itse koodaama Discord Botti, jonka alkuperäinen tarkoitus oli lähinnä ärsyttää Lauria rajoittamalla hänen .gif viestejä.
+Pierubotti on Jaakko Saarikon itse koodaama Discord botti, jonka alkuperäinen tarkoitus oli lähinnä ärsyttää Lauria rajoittamalla hänen .gif viestejä.
 Nyt botilla on hiukan muitakin toiminnallisuuksia.
 Koodi bugista, ja hädin tuskin toimivaa, mutta sillä mennään.
 

@@ -1,12 +1,14 @@
 {
-    "palvelimet": {
+    "kanavat": {
         "1030890048125669506": {
-            "ilmoitusKanavaID": 1191748814558724156,
-            "puheKanavaID": 1030890050398994452
+            "kanava": "MacJorma Airsoft",
+            "ilmoituskanava_id": 1030892332465278987,
+            "puhekanavat": [1030890050398994452, 1030890050642264094]
         },
         "276323735861198848": {
-            "ilmoitusKanavaID": 1014160619546624001,
-            "puheKanavaID": 276324060835872769
+            "kanava": "Neekeri MSS",
+            "ilmoituskanava_id": 1014160619546624001,
+            "puhekanavat": [276324060835872769, 1013784169601585235, 1013784226543452170]
         }
     }
 }

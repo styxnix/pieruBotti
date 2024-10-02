@@ -1,9 +1,2 @@
 discord.py==2.3.2
 psutil
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> facc905e6863b1c09fa100ad57b3ccce62d50943
